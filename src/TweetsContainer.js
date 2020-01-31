@@ -10,12 +10,10 @@ class TweetsContainer extends Component {
   }
 
   retrieveUserId = (id) => {
-    // console.log('ID', id)
     this.filterTweets(id)
   }
 
   filterTweets = (id) => {
-    // console.log(id, 'random')
     let seletedUser = this.state.users.filter(user => user.id === id)
     this.setState({currentUser: seletedUser[0]} )
   }
@@ -28,22 +26,25 @@ class TweetsContainer extends Component {
       }
       return user
     })
-
     this.setState({users: updatedUsers})
   }
   render() {
-    // console.log("In TweetsContainer, state is", this.state)
     return (
       <div className="ui main container">
         <div className="ui grid">
           <div className="six wide column">
             <h2 className="ui header">Users</h2>
-            <UserList users={this.state.users} retrieveUserId = {this.retrieveUserId} />
+            <UserList 
+              users={this.state.users} 
+              retrieveUserId = {this.retrieveUserId}
+            />
           </div>
           <div className="ten wide column">
             <h2 className="ui header">Tweets</h2>
-            <TweetList user={this.state.currentUser.id ? this.state.currentUser: this.state.users[0]} handleTweetLike = {this.handleTweetLike} />
-  
+            <TweetList 
+              user={this.state.currentUser.id ? this.state.currentUser: this.state.users[0]} 
+              handleTweetLike = {this.handleTweetLike} 
+            />
           </div>
         </div>
       </div>
